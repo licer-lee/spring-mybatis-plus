@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,17 +21,23 @@ public class TypeServiceImpl implements TypeService {
 	
 	@Override
 	public Type find(int id) {
-		return mapper.byId(id);
+//		return mapper.byId(id);
+		return mapper.selectById(id);
+		
 	}
 
 	@Override
 	public List<Type> findAll() {
-		return mapper.findAll();
+//		return mapper.findAll();
+		return mapper.selectList(null);
+		
 	}
 
 	@Override
 	public void save(Type t) {
-		int count = mapper.save(t);
+//		int count = mapper.save(t);
+		mapper.insert(t);
+		
 	}
 
 	@Override
